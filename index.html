@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ff6a13">
+<title>Glaze Bomb Donuts</title>
+<meta name="description" content="Glaze Bomb - filled brioche donuts with thick hand-dipped glaze, made fresh every morning. See the menu, build your own donut or fill a box of six.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='36' rx='28' ry='22' fill='%23cf914c'/%3E%3Cpath d='M6 32c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z' fill='%23ff6a13'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=46">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body class="is-loading">
+<a class="skip" href="#top">Skip to content</a>
+
+<!-- ============ INTRO (loader) ============ -->
+<div class="intro" id="loader">
+  <div class="intro__sheet" aria-hidden="true">
+    <div class="intro__grid"><i class="intro__gh"></i><i class="intro__gv"></i></div>
+    <div class="intro__bloom"></div>
+    <svg class="intro__trail" id="introTrail"><defs><linearGradient id="introTrailG" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6a13" stop-opacity="0"/><stop offset="1" stop-color="#ff6a13" stop-opacity=".9"/></linearGradient></defs><path id="introTrailA"/><path id="introTrailB"/></svg>
+  </div>
+  <span class="intro__ring" aria-hidden="true"></span>
+  <div class="intro__lockup" aria-hidden="true">
+    <div class="intro__stage">
+      <div class="intro__donut" id="introDonut">
+        <span class="intro__ripple"></span><span class="intro__ripple"></span>
+        <span class="intro__sparks" id="introSparks"></span>
+        <span class="intro__art" id="introArt"><img id="introImg" alt="" width="360" height="360" fetchpriority="high" decoding="async" draggable="false"><script>/* a different 3D donut on every visit (list = assets/3d/donuts/*-top.webp) */(function () {var L = 'almond-snowcap,bavarian-cream-dream,berry-coconut-snow,cappuccino-swirl,caramel-biscuit-crunch,caramel-drizzle,cheese-cloud,choco-almond,choco-crumble-stripe,choco-glaze,choco-sprinkle,coffee-crumble,cookie-speckle,cookies-and-cream-latte,hazelnut-crunch,hazelnut-velvet,mallow-party,mango-graham,matcha-almond,matcha-drizzle,matcha-web,midnight-marble,milk-tea-sesame,mocha-glaze,orange-zest-cream,original-glaze,smores-campfire,snow-web,strawberry-glaze,strawberry-sprinkle,tiramisu-dust,ube-cheese-cloud,ube-halaya,wafer-crunch-bar'.split(','), k = L[Math.random() * L.length | 0];try { var last = localStorage.getItem('gb-intro-donut'); while (L.length > 1 && k === last) k = L[Math.random() * L.length | 0]; localStorage.setItem('gb-intro-donut', k); } catch (e) { /* storage off */ }document.getElementById('introImg').src = 'assets/3d/donuts/' + k + '-top.webp?a=1';})();</script></span>
+      </div>
+    </div>
+    <p class="intro__word" aria-label="Glaze Bomb"><span class="intro__letters" id="introLetters">Glaze Bomb</span><span class="intro__glint" aria-hidden="true">Glaze Bomb</span></p>
+    <p class="intro__sub" id="introSub">Filled donuts &middot; glazed by hand</p>
+    <span class="intro__pills" id="introPills"></span>
+  </div>
+  <span class="intro__progress" aria-hidden="true"><i id="introBar"></i></span>
+  <button class="intro__skip" id="introSkip" type="button">Skip intro</button>
+  <span class="intro__hint" aria-hidden="true" id="introHint">tap the donut</span>
+</div>
+
+<!-- ============ 3D STAGE ============ -->
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" aria-label="Glaze Bomb, back to top">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="38" rx="28" ry="20" fill="#cf914c"/><ellipse cx="32" cy="40" rx="27" ry="4" fill="#f7e2bd" opacity=".8"/><path d="M6 33c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z" fill="#ff6a13"/><ellipse cx="22" cy="22" rx="7" ry="3" fill="#fff" opacity=".45" transform="rotate(-18 22 22)"/></svg>
+    <span>Glaze Bomb</span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="#top" class="is-page" aria-current="page">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="location.html">Location</a>
+  </nav>
+  <div class="nav__right">
+    <a href="#box" class="btn btn--primary btn--sm nav__order">Order a box</a>
+    <button class="nav__cart" id="cartBtn" aria-label="Open your order (0 items)">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 11h22l-2 15H7z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.5 11a4.5 4.5 0 0 1 9 0" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+      <span class="nav__count" id="cartCount">0</span>
+    </button>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" aria-labelledby="heroTitle">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__beams"></div>
+    <div class="hero__orb hero__orb--a" data-depth="0.6"></div>
+    <div class="hero__orb hero__orb--b" data-depth="-0.4"></div>
+    <div class="floor"><div class="floor__grid"></div></div>
+    <div class="hero__horizon"></div>
+  </div>
+  <div class="hero__grid">
+    <div class="hero__copy">
+      <p class="pill" id="heroOpen"><span class="pill__dot"></span><span class="pill__text">Fresh every morning from 6:00 AM</span></p>
+      <h1 class="hero__title" id="heroTitle">
+        <span class="line"><span>Filled donuts,</span></span>
+        <span class="line"><span class="accent">glazed by hand.</span></span>
+      </h1>
+      <p class="hero__lead">Soft brioche filled with custard, ganache or jam, then dipped in a thick, glossy glaze. Baked fresh every morning, gone by the afternoon.</p>
+      <div class="hero__ctas">
+        <a href="menu.html" class="btn btn--primary">See the menu <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#build" class="btn btn--ghost">Build your own</a>
+      </div>
+      <ul class="hero__facts" aria-label="Highlights">
+        <li><b>6</b><span>signature flavors</span></li>
+        <li><b>4</b><span>fillings to choose</span></li>
+        <li><b>Free</b><span>drink with every box</span></li>
+      </ul>
+      <div class="hero__social" aria-label="Follow Glaze Bomb">
+        <span>Follow the fresh batch</span>
+        <div class="socials socials--sm" data-socials></div>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <div class="display" aria-hidden="true">
+        <div class="display__glow"></div>
+        <div class="display__ring"><i class="display__sweep"></i></div>
+        <div class="display__ticks"></div>
+        <div class="pedestal"><i class="pedestal__side"></i><i class="pedestal__top"></i><i class="pedestal__rim"></i></div>
+      </div>
+      <div class="hero__anchor" data-donut-anchor="hero" aria-hidden="true"></div>
+      <div class="gcard gcard--a" data-depth="1.2" aria-hidden="true"><i class="gcard__ico">&#10022;</i><span><b>Hand-dipped</b>thick glossy glaze</span></div>
+      <div class="gcard gcard--b" data-depth="-1" aria-hidden="true"><i class="gcard__ico">&#9673;</i><span><b>Filled to the edge</b>custard, ganache, jam</span></div>
+      <div class="gcard gcard--c" data-depth="0.8" aria-hidden="true"><i class="gcard__ico">&#9728;</i><span><b>Baked at 6 AM</b>every single day</span></div>
+      <div class="hero__picker">
+        <p class="hero__picked" aria-live="polite"><span id="pickName">Caramel Biscuit Crunch</span><b id="pickPrice">$3.80</b></p>
+        <div class="hero__chips" id="heroChips" role="group" aria-label="Preview a flavor on the 3D donut"></div>
+      </div>
+    </div>
+  </div>
+  <a href="#flavors" class="scrollcue" aria-label="Scroll to our signature flavors"><span></span></a>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="band" aria-hidden="true">
+  <div class="band__track" id="bandTrack">
+    <span>Open daily from 6 AM</span><i></i><span>32 filled donuts</span><i></i><span>12 hot &amp; iced drinks</span><i></i><span>Free drink with every box</span><i></i><span>Pick-up or delivery</span><i></i>
+  </div>
+</div>
+
+<!-- ============ MENU (pinned) ============ -->
+<section class="menu" id="flavors" aria-labelledby="menuTitle">
+  <div class="menu__pin">
+    <div class="menu__bg" id="menuBg" aria-hidden="true"><div class="floor floor--soft"><div class="floor__grid"></div></div></div>
+    <div class="menu__copy">
+      <p class="kicker" id="menuTitle">Signature &middot; our 6 best sellers</p>
+      <h2 class="menu__name" id="flavorName">Caramel Biscuit Crunch</h2>
+      <p class="menu__desc" id="flavorDesc">White chocolate glaze with caramel biscuit stripes, buttery crumbs and a whole spiced biscuit on top.</p>
+      <dl class="menu__meta">
+        <div><dt>Filling</dt><dd id="flavorFill">Vanilla custard</dd></div>
+        <div><dt>Glaze</dt><dd id="flavorGlaze">White chocolate</dd></div>
+        <div class="menu__pair"><dt>Best with</dt><dd id="flavorPair">Iced latte</dd></div>
+      </dl>
+      <div class="taste" id="taste" aria-label="Taste profile">
+        <div class="taste__row"><span>Sweet</span><i><b data-k="sweet"></b></i></div>
+        <div class="taste__row"><span>Rich</span><i><b data-k="rich"></b></i></div>
+        <div class="taste__row"><span>Crunch</span><i><b data-k="crunch"></b></i></div>
+      </div>
+      <div class="menu__buy">
+        <span class="menu__price" id="flavorPrice">$3.80</span>
+        <button class="btn btn--primary" id="flavorAdd">Add to order</button>
+      </div>
+      <div class="menu__tabs" id="flavorTabs" role="tablist" aria-label="Choose a flavor"></div>
+    </div>
+    <div class="menu__display">
+      <span class="menu__num" id="flavorNum" aria-hidden="true">01</span>
+      <div class="display display--menu" aria-hidden="true">
+        <div class="display__glow"></div>
+        <div class="display__ring"><i class="display__sweep"></i></div>
+        <div class="pedestal"><i class="pedestal__side"></i><i class="pedestal__top"></i><i class="pedestal__rim"></i></div>
+      </div>
+      <div class="menu__anchor" data-donut-anchor="flavors" aria-hidden="true"></div>
+      <p class="menu__hint">Scroll to see each flavor, or tap a name</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILD ============ -->
+<section class="build" id="build" aria-labelledby="buildTitle">
+  <header class="section-head">
+    <p class="kicker">Make it yours</p>
+    <h2 class="title" id="buildTitle" data-words>Build your own donut</h2>
+    <p class="sub" data-reveal>Pick each step below and watch your donut change. Drag the donut to spin it.</p>
+  </header>
+  <div class="build__grid">
+    <div class="build__stagecol">
+      <div class="build__stage">
+        <div class="floor floor--stage" aria-hidden="true"><div class="floor__grid"></div></div>
+        <div class="pedestal pedestal--build" aria-hidden="true"><i class="pedestal__side"></i><i class="pedestal__top"></i><i class="pedestal__rim"></i></div>
+        <div class="build__anchor" data-donut-anchor="build" id="buildAnchor" aria-label="Your donut. Drag to spin." role="img"></div>
+        <span class="build__drag" aria-hidden="true">&#8596; drag to spin</span>
+        <span class="build__live" aria-hidden="true"><i></i>Live preview</span>
+      </div>
+      <div class="summary">
+        <div class="summary__top">
+          <h3 class="summary__name" id="buildName">The Snowy Crunch</h3>
+          <span class="summary__price" id="buildPrice">$4.00</span>
+        </div>
+        <p class="summary__list" id="buildList">Classic brioche &middot; Vanilla custard &middot; White chocolate glaze</p>
+        <div class="summary__actions">
+          <button class="btn btn--ghost btn--sm" id="buildRandom">Surprise me</button>
+          <button class="btn btn--primary" id="buildAdd">Add to order</button>
+        </div>
+      </div>
+    </div>
+    <div class="build__panel">
+      <fieldset class="opt">
+        <legend><b>1</b> Dough</legend>
+        <div class="chips" data-group="dough">
+          <button class="chip is-on" data-v="classic" aria-pressed="true"><i style="--c:#cf914c"></i>Classic brioche</button>
+          <button class="chip" data-v="cocoa" aria-pressed="false"><i style="--c:#5a2e1a"></i>Double cocoa <small>+$0.30</small></button>
+          <button class="chip" data-v="matcha" aria-pressed="false"><i style="--c:#97a24f"></i>Matcha <small>+$0.30</small></button>
+        </div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend><b>2</b> Filling</legend>
+        <div class="chips" data-group="filling">
+          <button class="chip is-on" data-v="Vanilla custard" aria-pressed="true"><i style="--c:#f6dc8c"></i>Vanilla custard</button>
+          <button class="chip" data-v="Chocolate ganache" aria-pressed="false"><i style="--c:#4a2618"></i>Chocolate ganache</button>
+          <button class="chip" data-v="Strawberry jam" aria-pressed="false"><i style="--c:#d8344a"></i>Strawberry jam</button>
+          <button class="chip" data-v="Ube halaya" aria-pressed="false"><i style="--c:#7d4cc2"></i>Ube halaya</button>
+        </div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend><b>3</b> Glaze</legend>
+        <div class="swatches" data-group="glaze">
+          <button class="sw is-on" style="--c:#fbf4ea" data-v="#fbf4ea" data-n="White chocolate" aria-pressed="true" aria-label="White chocolate"></button>
+          <button class="sw" style="--c:#e8cfa6" data-v="#e8cfa6" data-n="Milk tea" aria-pressed="false" aria-label="Milk tea"></button>
+          <button class="sw" style="--c:#d6ac76" data-v="#d6ac76" data-n="Cafe latte" aria-pressed="false" aria-label="Cafe latte"></button>
+          <button class="sw" style="--c:#d9a066" data-v="#d9a066" data-n="Salted caramel" aria-pressed="false" aria-label="Salted caramel"></button>
+          <button class="sw" style="--c:#2e1810" data-v="#2e1810" data-n="Dark chocolate" aria-pressed="false" aria-label="Dark chocolate"></button>
+          <button class="sw" style="--c:#ff9a4d" data-v="#ff9a4d" data-n="Orange zest" aria-pressed="false" aria-label="Orange zest"></button>
+          <button class="sw" style="--c:#a8d48f" data-v="#a8d48f" data-n="Matcha" aria-pressed="false" aria-label="Matcha"></button>
+          <button class="sw" style="--c:#a46be0" data-v="#a46be0" data-n="Ube" aria-pressed="false" aria-label="Ube"></button>
+        </div>
+        <p class="opt__note">Selected: <b id="glazeName">White chocolate</b></p>
+        <div class="chips chips--sub" data-group="pattern" aria-label="Glaze finish">
+          <button class="chip is-on" data-v="plain" aria-pressed="true">Smooth</button>
+          <button class="chip" data-v="marble" aria-pressed="false">Marble swirl <small>+$0.30</small></button>
+          <button class="chip" data-v="dust" aria-pressed="false">Sesame dust <small>+$0.30</small></button>
+          <button class="chip" data-v="crumbcoat" aria-pressed="false">Crumb coat <small>+$0.30</small></button>
+        </div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend><b>4</b> Topping</legend>
+        <div class="chips" data-group="topping">
+          <button class="chip is-on" data-v="biscuit" aria-pressed="true">Biscuit &amp; crumbs <small>+$0.80</small></button>
+          <button class="chip" data-v="crumbs" aria-pressed="false">Cookie crumbs <small>+$0.50</small></button>
+          <button class="chip" data-v="graham" aria-pressed="false">Graham &amp; mango <small>+$0.90</small></button>
+          <button class="chip" data-v="sesame" aria-pressed="false">Black sesame <small>+$0.40</small></button>
+          <button class="chip" data-v="sprinkles" aria-pressed="false">Sprinkles <small>+$0.40</small></button>
+          <button class="chip" data-v="pearls" aria-pressed="false">Sugar pearls <small>+$0.50</small></button>
+          <button class="chip" data-v="none" aria-pressed="false">No topping</button>
+        </div>
+      </fieldset>
+      <fieldset class="opt">
+        <legend><b>5</b> Drizzle</legend>
+        <div class="chips" data-group="drizzle">
+          <button class="chip" data-v="" aria-pressed="false">None</button>
+          <button class="chip" data-v="#ffffff" aria-pressed="false"><i style="--c:#ffffff"></i>White <small>+$0.30</small></button>
+          <button class="chip" data-v="#3a1d10" aria-pressed="false"><i style="--c:#3a1d10"></i>Chocolate <small>+$0.30</small></button>
+          <button class="chip is-on" data-v="#9c6a3c" aria-pressed="true"><i style="--c:#9c6a3c"></i>Caramel <small>+$0.30</small></button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOX ============ -->
+<section class="box" id="box" aria-labelledby="boxTitle">
+  <header class="section-head">
+    <p class="kicker">Sharing is optional</p>
+    <h2 class="title" id="boxTitle" data-words>Fill a box of 6, drink on us</h2>
+    <p class="sub" data-reveal>Tap a donut to add it to the box (or drag it in). Tap a donut inside the box to take it out. Your box of 6 saves 10% and comes with a free drink.</p>
+  </header>
+  <div class="box__grid">
+    <div class="box__tray" id="tray" aria-label="Donuts you can add"></div>
+    <div class="box__wrap">
+      <div class="box3d" id="pbox">
+        <div class="box3d__shadow" aria-hidden="true"></div>
+        <div class="box3d__scene">
+          <div class="b-floor"><div class="pbox__slots" id="slots"></div></div>
+          <div class="b-wall b-wall--back" aria-hidden="true"></div>
+          <div class="b-wall b-wall--left" aria-hidden="true"></div>
+          <div class="b-wall b-wall--right" aria-hidden="true"></div>
+          <div class="b-wall b-wall--front" aria-hidden="true"><span>Glaze Bomb &middot; filled donuts</span></div>
+          <div class="b-lid" id="boxLid" aria-label="Box lid. Tap to open." role="button" tabindex="0">
+            <div class="b-lid__face b-lid__out">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="38" rx="28" ry="20" fill="#f7e2bd"/><path d="M6 33c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z" fill="#fff"/></svg>
+              <span>Glaze Bomb</span><small>Your box is ready &middot; tap to look inside</small>
+            </div>
+            <div class="b-lid__face b-lid__in"><span>Made fresh this morning &#9829;</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="box__drink">
+        <p class="box__drinklabel">Pick your free drink</p>
+        <div class="fdrinks" data-free-drinks></div>
+      </div>
+      <div class="box__foot">
+        <p class="box__status"><b id="boxCount">0 of 6</b> chosen <span id="boxTotal"></span></p>
+        <p class="box__free">+ free <b id="boxDrink">Iced Spanish Latte</b> with this box</p>
+        <div class="box__btns">
+          <button class="btn btn--ghost btn--sm" id="boxClear">Clear box</button>
+          <button class="btn btn--primary btn--sm" id="boxAdd" disabled>Add box to order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE THE MENU ============ -->
+<section class="explore" id="explore" aria-labelledby="exploreTitle">
+  <header class="section-head section-head--center">
+    <p class="kicker">There is more on the menu</p>
+    <h2 class="title" id="exploreTitle" data-words>Something for every craving</h2>
+    <p class="sub" data-reveal>32 filled donuts, 12 hot and iced drinks, combos and boxes with a free drink. All on one page.</p>
+  </header>
+  <div class="explore__grid" id="exploreGrid"></div>
+  <div class="explore__cta"><a href="menu.html" class="btn btn--primary">Open the full menu <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process" id="process" aria-labelledby="processTitle">
+  <header class="section-head section-head--center">
+    <p class="kicker">From dough to box</p>
+    <h2 class="title title--md" id="processTitle" data-words>How we make them</h2>
+    <p class="sub" data-reveal>Every donut goes through the same five steps, by hand, every morning.</p>
+  </header>
+  <div class="steps">
+    <div class="steps__line" aria-hidden="true"><span id="stepsLine"></span></div>
+    <article class="step">
+      <div class="step__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 34h44l-4 16a6 6 0 0 1-6 4H20a6 6 0 0 1-6-4z" fill="#ffe6d2" stroke="#3a1e10" stroke-width="3" stroke-linejoin="round"/><ellipse cx="32" cy="30" rx="14" ry="9" fill="#f7e2bd" stroke="#3a1e10" stroke-width="3"/><path d="M44 14l8-6" stroke="#ff6a13" stroke-width="4" stroke-linecap="round"/></svg></div>
+      <div class="step__body"><span class="step__n">Step 1 &middot; 2:00 AM</span><h3>Mix &amp; knead</h3><p>Brioche dough with real butter, milk and eggs, kneaded until silky.</p></div>
+    </article>
+    <article class="step">
+      <div class="step__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="34" r="20" fill="#ffe6d2" stroke="#3a1e10" stroke-width="3"/><path d="M32 22v12l8 6" fill="none" stroke="#ff6a13" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 8h12" stroke="#3a1e10" stroke-width="3" stroke-linecap="round"/></svg></div>
+      <div class="step__body"><span class="step__n">Step 2 &middot; overnight</span><h3>Slow rise</h3><p>The dough rests slowly overnight so every donut is light and fluffy.</p></div>
+    </article>
+    <article class="step">
+      <div class="step__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 28h48v14a12 12 0 0 1-12 12H20A12 12 0 0 1 8 42z" fill="#ffe6d2" stroke="#3a1e10" stroke-width="3" stroke-linejoin="round"/><ellipse cx="32" cy="28" rx="14" ry="5" fill="#cf914c" stroke="#3a1e10" stroke-width="3"/><circle cx="20" cy="18" r="3" fill="#ff6a13"/><circle cx="42" cy="14" r="2.5" fill="#ff6a13"/><circle cx="32" cy="10" r="2" fill="#ff6a13"/></svg></div>
+      <div class="step__body"><span class="step__n">Step 3 &middot; 5:00 AM</span><h3>Fry golden</h3><p>Ninety seconds per side. The pale ring around the middle means a perfect float.</p></div>
+    </article>
+    <article class="step">
+      <div class="step__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8l22 22-6 6L8 14z" fill="#ffe6d2" stroke="#3a1e10" stroke-width="3" stroke-linejoin="round"/><path d="M33 33l7 7" stroke="#3a1e10" stroke-width="3" stroke-linecap="round"/><ellipse cx="44" cy="46" rx="14" ry="10" fill="#cf914c" stroke="#3a1e10" stroke-width="3"/><circle cx="44" cy="44" r="4" fill="#ff6a13"/></svg></div>
+      <div class="step__body"><span class="step__n">Step 4 &middot; 5:30 AM</span><h3>Fill</h3><p>Piped full of custard, ganache, jam or ube while still warm.</p></div>
+    </article>
+    <article class="step">
+      <div class="step__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="40" rx="24" ry="14" fill="#cf914c" stroke="#3a1e10" stroke-width="3"/><path d="M9 36c0-9 10-15 23-15s23 6 23 15c-3 2-5 0-7 2s-1 6-5 6-3-4-7-4-3 5-7 4-3-5-6-4-3 2-5-1-6 0-9-3z" fill="#ff6a13" stroke="#3a1e10" stroke-width="3" stroke-linejoin="round"/><path d="M22 28l4 2M36 26l3-2M42 32l3 1" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div>
+      <div class="step__body"><span class="step__n">Step 5 &middot; 6:00 AM</span><h3>Glaze &amp; top</h3><p>Dipped by hand in thick glaze, then finished with crumbs, drizzle or jam.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" aria-labelledby="revTitle">
+  <header class="section-head section-head--center">
+    <p class="kicker">Kind words</p>
+    <h2 class="title title--md" id="revTitle" data-words>What customers say</h2>
+  </header>
+  <div class="reviews__grid">
+    <figure class="rv"><div class="rv__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>"The custard goes all the way to the edge. I have not been able to buy a normal donut since."</blockquote><figcaption><i>M</i><span>Mara<small>regular since opening</small></span></figcaption></figure>
+    <figure class="rv"><div class="rv__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>"Mango Graham tastes like a summer holiday. The box of six disappeared at the office in minutes."</blockquote><figcaption><i>J</i><span>Jun<small>ordered a box of 6</small></span></figcaption></figure>
+    <figure class="rv"><div class="rv__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>"Midnight Marble is beautiful and not too sweet. Come early, they really do sell out."</blockquote><figcaption><i>P</i><span>Priya<small>weekend visitor</small></span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="visit" id="visit" aria-labelledby="visitTitle">
+  <div class="visit__card">
+    <p class="kicker">Come say hi</p>
+    <h2 class="title title--md" id="visitTitle" data-words>Visit us</h2>
+    <p class="open" id="openStatus"><span class="open__dot"></span><span id="openText">Checking today's hours&hellip;</span></p>
+    <dl class="hours">
+      <div><dt>Monday to Friday</dt><dd>6:00 AM &ndash; 2:00 PM</dd></div>
+      <div><dt>Saturday &amp; Sunday</dt><dd>7:00 AM &ndash; 1:00 PM</dd></div>
+    </dl>
+    <p class="addr"><b>Glaze Bomb Bakery</b><br>12 Glaze Lane, Downtown</p>
+    <p class="addr__more"><a href="location.html">Directions, parking &amp; hours for the week &rarr;</a></p>
+    <div class="visit__btns">
+      <a href="menu.html" class="btn btn--primary">Order for pick-up</a>
+      <button class="btn btn--ghost" id="viewOrder">View your order</button>
+    </div>
+  </div>
+  <div class="visit__map" aria-hidden="true">
+    <svg viewBox="0 0 400 320">
+      <rect width="400" height="320" rx="28" fill="#fff7ef"/>
+      <g stroke="#ffe9d6" stroke-width="1"><path d="M0 40H400M0 80H400M0 120H400M0 160H400M0 200H400M0 240H400M0 280H400M40 0V320M80 0V320M120 0V320M160 0V320M200 0V320M240 0V320M280 0V320M320 0V320M360 0V320"/></g>
+      <path d="M-10 92 C120 72 180 142 410 112" stroke="#ffe0c7" stroke-width="28" fill="none"/>
+      <path d="M140 -10 C150 120 120 210 170 330" stroke="#ffe9d6" stroke-width="22" fill="none"/>
+      <path d="M262 -10 L302 330" stroke="#ffe0c7" stroke-width="18" fill="none"/>
+      <path d="M-10 232 C140 252 262 202 410 242" stroke="#ffe9d6" stroke-width="20" fill="none"/>
+      <path class="route" d="M60 290 C90 250 120 230 150 200 S190 170 205 168" fill="none" stroke="#ff6a13" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/>
+      <circle cx="60" cy="290" r="8" fill="#3a1e10"/>
+      <rect x="40" y="140" width="60" height="44" rx="8" fill="#ffefe0"/><rect x="310" y="40" width="64" height="50" rx="8" fill="#ffefe0"/><rect x="300" y="260" width="70" height="40" rx="8" fill="#ffefe0"/>
+      <circle class="pulse-ring" cx="205" cy="160" r="26" fill="none" stroke="#ff6a13" stroke-width="3"/>
+      <g class="pin"><path d="M205 196c-18-20-28-34-28-48a28 28 0 0 1 56 0c0 14-10 28-28 48z" fill="#ff6a13"/><circle cx="205" cy="148" r="11" fill="#fff"/></g>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ SOCIAL WALL ============ -->
+<section class="social" id="social" aria-labelledby="socialTitle">
+  <header class="section-head section-head--center">
+    <p class="kicker">Fresh from the counter</p>
+    <h2 class="title title--md" id="socialTitle" data-words>Follow @glazebomb</h2>
+    <p class="sub" data-reveal>New flavors drop first on our socials. Tag us with #GlazeBomb to be featured.</p>
+  </header>
+  <div class="wall" id="wall"></div>
+  <div class="socials socials--lg" data-socials data-labels></div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <p class="foot__logo">Glaze Bomb</p>
+      <p>Filled brioche donuts, glazed by hand and made fresh every morning.</p>
+      <div class="socials socials--foot" data-socials></div>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="#top">Home</a><a href="menu.html">Menu</a><a href="gallery.html">Gallery</a><a href="location.html">Location</a><a href="#flavors">Signature flavors</a><a href="#build">Build your own</a><a href="#box">Box of 6</a>
+    </nav>
+    <form class="news" id="newsForm" novalidate>
+      <label for="newsEmail">Get new flavors by email</label>
+      <div class="news__row">
+        <input id="newsEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
+      </div>
+      <p class="news__msg" id="newsMsg" role="status"></p>
+    </form>
+  </div>
+  <p class="foot__small">&copy; 2026 Glaze Bomb Donuts &middot; Concept website: orders and sign-ups are not processed.</p>
+</footer>
+
+<!-- ============ ORDER DRAWER ============ -->
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <div class="drawer__head"><h3>Your order</h3><button class="drawer__x" id="drawerClose" aria-label="Close your order">&times;</button></div>
+  <ul class="drawer__list" id="drawerList"></ul>
+  <div class="drawer__foot">
+    <div class="ticket">
+      <div class="seg" id="ticketWay" role="radiogroup" aria-label="How you get your order"><button type="button" role="radio" aria-checked="true" data-way="pickup">Pick-up</button><button type="button" role="radio" aria-checked="false" data-way="delivery">Delivery</button></div>
+      <label class="ticket__when"><span id="whenLabel">Ready for pick-up</span><select id="readyBy"></select></label>
+    </div>
+    <p><span>Total</span><b id="drawerTotal">$0.00</b></p>
+    <button class="btn btn--primary btn--block" id="checkout">Checkout</button>
+    <p class="drawer__note" id="checkoutNote">This is a concept website, so checkout is not active.</p>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="js/intro.js?v=46"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="js/main.js?v=46"></script>
+</body>
+</html>

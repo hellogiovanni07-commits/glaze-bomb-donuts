@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Glaze Bomb - 3D art renderer (tool)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&family=Inter:wght@600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<style>body { margin: 0; font: 14px system-ui; background: #fff8f1; color: #3a1e10; padding: 20px; }</style>
+</head>
+<body>
+<p>Renders every donut and cup with the real 3D model for <code>assets/3d/</code>. Run <code>qa/gb_render3d.py</code>; this page is not linked from the site.</p>
+<script type="module">
+import { DonutThumbs } from '../js/donut.js?v=46';
+import { buildCup, staticBox } from '../js/drinks.js?v=46';
+import { ALL_DONUTS, ALL_DRINKS, BOX_SETS, slug } from '../js/data.js?v=46';
+await Promise.race([Promise.all([document.fonts.load('800 40px "Plus Jakarta Sans"'), document.fonts.load('600 28px Inter'), document.fonts.load('700 40px Caveat')]), new Promise((r) => setTimeout(r, 4000))]);
+const R = new DonutThumbs();
+const jobs = [];
+for (const d of ALL_DONUTS) {
+  jobs.push({ path: `donuts/${slug(d.name)}.webp`, out: 480, run: () => R.donut(d, { rx: -0.85, px: 960, fill: 0.9 }) });
+  jobs.push({ path: `donuts/${slug(d.name)}-top.webp`, out: 360, run: () => R.donut(d, { rx: -0.2, px: 720, fill: 0.92 }) });
+}
+for (const d of ALL_DRINKS) jobs.push({ path: `drinks/${slug(d.name)}.webp`, out: 400, run: () => R.object(buildCup(d), { px: 800 }) });
+// the donut box (lid open, six real donuts) for box items in the cart and the chat
+for (const [key, set] of Object.entries(BOX_SETS)) jobs.push({ path: `boxes/${key}.webp`, out: 400, trim: true, run: () => R.object(staticBox(set, (f) => R.makeModel(f)), { px: 800, turn: -0.42, lift: 0.95 }) });
+window.__jobs = jobs.map((j) => ({ path: j.path, out: j.out, trim: !!j.trim }));
+window.__render = (i) => jobs[i].run();
+window.__ready = true;
+document.body.insertAdjacentHTML('beforeend', `<p>${jobs.length} jobs ready.</p>`);
+</script>
+</body>
+</html>

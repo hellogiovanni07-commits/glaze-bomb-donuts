@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ff6a13">
+<title>Location &middot; Glaze Bomb Donuts</title>
+<meta name="description" content="Find Glaze Bomb at 12 Glaze Lane, Downtown: opening hours, live open status, directions, parking and pick-up.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='36' rx='28' ry='22' fill='%23cf914c'/%3E%3Cpath d='M6 32c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z' fill='%23ff6a13'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=46">
+</head>
+<body class="is-loading page-location">
+<a class="skip" href="#top">Skip to content</a>
+
+<!-- ============ INTRO (loader) ============ -->
+<div class="intro" id="loader">
+  <div class="intro__sheet" aria-hidden="true">
+    <div class="intro__grid"><i class="intro__gh"></i><i class="intro__gv"></i></div>
+    <div class="intro__bloom"></div>
+    <svg class="intro__trail" id="introTrail"><defs><linearGradient id="introTrailG" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6a13" stop-opacity="0"/><stop offset="1" stop-color="#ff6a13" stop-opacity=".9"/></linearGradient></defs><path id="introTrailA"/><path id="introTrailB"/></svg>
+  </div>
+  <span class="intro__ring" aria-hidden="true"></span>
+  <div class="intro__lockup" aria-hidden="true">
+    <div class="intro__stage">
+      <div class="intro__donut" id="introDonut">
+        <span class="intro__ripple"></span><span class="intro__ripple"></span>
+        <span class="intro__sparks" id="introSparks"></span>
+        <span class="intro__art" id="introArt"><img id="introImg" alt="" width="360" height="360" fetchpriority="high" decoding="async" draggable="false"><script>/* a different 3D donut on every visit (list = assets/3d/donuts/*-top.webp) */(function () {var L = 'almond-snowcap,bavarian-cream-dream,berry-coconut-snow,cappuccino-swirl,caramel-biscuit-crunch,caramel-drizzle,cheese-cloud,choco-almond,choco-crumble-stripe,choco-glaze,choco-sprinkle,coffee-crumble,cookie-speckle,cookies-and-cream-latte,hazelnut-crunch,hazelnut-velvet,mallow-party,mango-graham,matcha-almond,matcha-drizzle,matcha-web,midnight-marble,milk-tea-sesame,mocha-glaze,orange-zest-cream,original-glaze,smores-campfire,snow-web,strawberry-glaze,strawberry-sprinkle,tiramisu-dust,ube-cheese-cloud,ube-halaya,wafer-crunch-bar'.split(','), k = L[Math.random() * L.length | 0];try { var last = localStorage.getItem('gb-intro-donut'); while (L.length > 1 && k === last) k = L[Math.random() * L.length | 0]; localStorage.setItem('gb-intro-donut', k); } catch (e) { /* storage off */ }document.getElementById('introImg').src = 'assets/3d/donuts/' + k + '-top.webp?a=1';})();</script></span>
+      </div>
+    </div>
+    <p class="intro__word" aria-label="Glaze Bomb"><span class="intro__letters" id="introLetters">Glaze Bomb</span><span class="intro__glint" aria-hidden="true">Glaze Bomb</span></p>
+    <p class="intro__sub" id="introSub">Filled donuts &middot; glazed by hand</p>
+    <span class="intro__pills" id="introPills"></span>
+  </div>
+  <span class="intro__progress" aria-hidden="true"><i id="introBar"></i></span>
+  <button class="intro__skip" id="introSkip" type="button">Skip intro</button>
+  <span class="intro__hint" aria-hidden="true" id="introHint">tap the donut</span>
+</div>
+
+<header class="nav" id="nav">
+  <a href="index.html" class="nav__logo" aria-label="Glaze Bomb home">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="38" rx="28" ry="20" fill="#cf914c"/><ellipse cx="32" cy="40" rx="27" ry="4" fill="#f7e2bd" opacity=".8"/><path d="M6 33c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z" fill="#ff6a13"/><ellipse cx="22" cy="22" rx="7" ry="3" fill="#fff" opacity=".45" transform="rotate(-18 22 22)"/></svg>
+    <span>Glaze Bomb</span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#top" class="is-page" aria-current="page">Location</a>
+  </nav>
+  <div class="nav__right">
+    <a href="menu.html#boxes" class="btn btn--primary btn--sm nav__order">Order a box</a>
+    <button class="nav__cart" id="cartBtn" aria-label="Open your order (0 items)">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 11h22l-2 15H7z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.5 11a4.5 4.5 0 0 1 9 0" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+      <span class="nav__count" id="cartCount">0</span>
+    </button>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ LOCATION HERO ============ -->
+<section class="phero lhero" aria-labelledby="lTitle">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__beams"></div>
+    <div class="hero__orb hero__orb--a"></div>
+    <div class="floor"><div class="floor__grid"></div></div>
+    <div class="hero__horizon"></div>
+  </div>
+  <div class="lhero__grid">
+    <div class="lhero__copy">
+      <p class="kicker">Find us</p>
+      <h1 class="phero__title" id="lTitle"><span class="line"><span>12 Glaze Lane,</span></span> <span class="line"><span class="accent">Downtown.</span></span></h1>
+      <p class="open" id="openStatus"><span class="open__dot"></span><span id="openText">Checking today's hours&hellip;</span></p>
+      <p class="phero__lead">On the corner of Glaze Lane and Baker Street, a two-minute walk from Downtown station. Look for the orange awning and the neon donut in the window.</p>
+      <div class="lhero__btns">
+        <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=12+Glaze+Lane+Downtown" target="_blank" rel="noopener noreferrer">Get directions <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <button class="btn btn--ghost" id="copyAddr" type="button">Copy address</button>
+      </div>
+    </div>
+    <div class="lmap">
+      <svg viewBox="0 0 640 520" role="presentation">
+      <defs><pattern id="lgrid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#ffe7d4" stroke-width="1"/></pattern></defs>
+      <rect width="640" height="520" rx="34" fill="#fff8f1"/><rect width="640" height="520" rx="34" fill="url(#lgrid)"/>
+      <rect x="400" y="300" width="200" height="170" rx="24" fill="#e6f2da"/>
+      <g fill="#bcd9a3"><circle cx="440" cy="340" r="16"/><circle cx="480" cy="390" r="20"/><circle cx="545" cy="345" r="15"/><circle cx="560" cy="420" r="18"/><circle cx="455" cy="440" r="13"/></g>
+      <path d="M-10 214 C150 190 300 236 650 198" stroke="#ffd9bb" stroke-width="40" fill="none"/>
+      <path d="M-10 214 C150 190 300 236 650 198" stroke="#fff" stroke-width="2" stroke-dasharray="14 14" fill="none" opacity=".9"/>
+      <path d="M318 -10 L300 530" stroke="#ffe2cb" stroke-width="30" fill="none"/>
+      <path d="M40 520 C120 400 190 330 300 300 S520 250 650 120" stroke="#ffe8d6" stroke-width="24" fill="none"/>
+      <rect x="40" y="56" width="132" height="86" rx="14" fill="#3a1e10"/>
+      <path d="M74 84h40v26H74zM70 118h48M80 122l-6 8M108 122l6 8M84 92h8M98 92h8" stroke="#ffd2b0" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <text x="106" y="166" text-anchor="middle" class="lmap__lbl">Downtown station</text>
+      <rect x="470" y="40" width="110" height="78" rx="14" fill="#fff" stroke="#ffd2b0" stroke-width="2"/>
+      <text x="525" y="94" text-anchor="middle" class="lmap__p">P</text>
+      <text x="525" y="142" text-anchor="middle" class="lmap__lbl">Parking, 20 spots</text>
+      <text x="500" y="492" text-anchor="middle" class="lmap__lbl">Baker Park</text>
+      <text x="120" y="236" class="lmap__st" transform="rotate(-3 120 236)">MAIN AVENUE</text>
+      <text x="334" y="96" class="lmap__st" transform="rotate(92 334 96)">BAKER STREET</text>
+      <text x="78" y="445" class="lmap__st" transform="rotate(-38 78 445)">GLAZE LANE</text>
+      <path class="route" d="M140 150 C170 230 230 250 280 268 S330 285 352 300" fill="none" stroke="#ff6a13" stroke-width="5" stroke-linecap="round" stroke-dasharray="420"/>
+      <circle cx="140" cy="150" r="7" fill="#ff6a13"/>
+      <circle class="pulse-ring" cx="356" cy="302" r="30" fill="none" stroke="#ff6a13" stroke-width="3"/>
+      <g class="pin"><path d="M356 344c-22-24-34-41-34-58a34 34 0 0 1 68 0c0 17-12 34-34 58z" fill="#ff6a13"/><circle cx="356" cy="286" r="15" fill="#fff"/><circle cx="356" cy="286" r="8" fill="#cf914c"/><path d="M349 283c2-4 12-4 14 0" stroke="#ff6a13" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+      <g class="lmap__tag"><rect x="380" y="246" width="150" height="42" rx="21" fill="#3a1e10"/><text x="455" y="273" text-anchor="middle" fill="#fff" class="lmap__tagtxt">Glaze Bomb</text></g>
+      <text x="240" y="300" class="lmap__walk">2 min walk</text>
+    </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETAILS ============ -->
+<section class="linfo" aria-label="Visit details">
+  <div class="lcard lcard--hours" id="hours">
+    <h2>Opening hours</h2>
+    <ul class="week" id="weekHours"></ul>
+    <p class="lcard__note">We bake from 5 AM and often sell out early, so mornings have the full range.</p>
+  </div>
+  <div class="lcard" id="getting-here">
+    <h2>Getting here</h2>
+    <dl class="ways">
+      <div><dt>By train</dt><dd>Downtown station, exit B. Walk down Main Avenue, then left onto Glaze Lane (2 min).</dd></div>
+      <div><dt>By car</dt><dd>20 free spots in the Baker Street lot, 1 minute away. Free for 30 minutes.</dd></div>
+      <div><dt>By bike</dt><dd>Bike rack right by our front door.</dd></div>
+      <div><dt>Delivery</dt><dd>Choose delivery in your order and pick a time.</dd></div>
+    </dl>
+  </div>
+  <div class="lcard">
+    <h2>Picking up an order</h2>
+    <ol class="steps-mini">
+      <li><span><b>Order ahead</b> on the menu page and pick a time.</span></li>
+      <li><span><b>Come to the orange shelf</b> just inside the door.</span></li>
+      <li><span><b>Find your name</b> on the box and the free drink next to it.</span></li>
+    </ol>
+    <a class="btn btn--primary btn--sm" href="menu.html">Order for pick-up</a>
+  </div>
+  <div class="lcard lcard--contact">
+    <h2>Contact</h2>
+    <p><a href="tel:+15550104242">(555) 010-4242</a><br><a href="mailto:hello@glazebomb.example">hello@glazebomb.example</a></p>
+    <p class="lcard__note">Concept website: the address, phone and email are placeholders.</p>
+  </div>
+</section>
+
+<!-- ============ GOOD TO KNOW ============ -->
+<section class="lfaq" aria-labelledby="faqTitle">
+  <h2 class="title title--md" id="faqTitle">Good to know</h2>
+  <details><summary>Can I sit in?</summary><p>Yes: 12 window seats and a long counter. Come early on weekends.</p></details>
+  <details><summary>Is it wheelchair accessible?</summary><p>Yes. Step-free entrance and an accessible restroom.</p></details>
+  <details><summary>Can I bring my dog?</summary><p>Dogs are welcome on the terrace, and there is always a water bowl out.</p></details>
+  <details><summary>How do I pay?</summary><p>Card, phone or cash at the counter. Online orders are paid when you pick them up.</p></details>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <p class="foot__logo">Glaze Bomb</p>
+      <p>Filled brioche donuts, glazed by hand and made fresh every morning.</p>
+      <div class="socials socials--foot" data-socials></div>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="gallery.html">Gallery</a><a href="#top">Location</a><a href="#hours">Opening hours</a><a href="#getting-here">Getting here</a>
+    </nav>
+    <form class="news" id="newsForm" novalidate>
+      <label for="newsEmail">Get new flavors by email</label>
+      <div class="news__row">
+        <input id="newsEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
+      </div>
+      <p class="news__msg" id="newsMsg" role="status"></p>
+    </form>
+  </div>
+  <p class="foot__small">&copy; 2026 Glaze Bomb Donuts &middot; Concept website: orders and sign-ups are not processed.</p>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <div class="drawer__head"><h3>Your order</h3><button class="drawer__x" id="drawerClose" aria-label="Close your order">&times;</button></div>
+  <ul class="drawer__list" id="drawerList"></ul>
+  <div class="drawer__foot">
+    <div class="ticket">
+      <div class="seg" id="ticketWay" role="radiogroup" aria-label="How you get your order"><button type="button" role="radio" aria-checked="true" data-way="pickup">Pick-up</button><button type="button" role="radio" aria-checked="false" data-way="delivery">Delivery</button></div>
+      <label class="ticket__when"><span id="whenLabel">Ready for pick-up</span><select id="readyBy"></select></label>
+    </div>
+    <p><span>Total</span><b id="drawerTotal">$0.00</b></p>
+    <button class="btn btn--primary btn--block" id="checkout">Checkout</button>
+    <p class="drawer__note" id="checkoutNote">This is a concept website, so checkout is not active.</p>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="js/intro.js?v=46"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="js/location.js?v=46"></script>
+</body>
+</html>

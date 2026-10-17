@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ff6a13">
+<title>Gallery &middot; Glaze Bomb Donuts</title>
+<meta name="description" content="Photos of Glaze Bomb donuts, drinks and boxes, the shop on Glaze Lane and the early-morning kitchen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='36' rx='28' ry='22' fill='%23cf914c'/%3E%3Cpath d='M6 32c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z' fill='%23ff6a13'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=46">
+</head>
+<body class="is-loading page-gallery">
+<a class="skip" href="#top">Skip to content</a>
+
+<!-- ============ INTRO (loader) ============ -->
+<div class="intro" id="loader">
+  <div class="intro__sheet" aria-hidden="true">
+    <div class="intro__grid"><i class="intro__gh"></i><i class="intro__gv"></i></div>
+    <div class="intro__bloom"></div>
+    <svg class="intro__trail" id="introTrail"><defs><linearGradient id="introTrailG" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6a13" stop-opacity="0"/><stop offset="1" stop-color="#ff6a13" stop-opacity=".9"/></linearGradient></defs><path id="introTrailA"/><path id="introTrailB"/></svg>
+  </div>
+  <span class="intro__ring" aria-hidden="true"></span>
+  <div class="intro__lockup" aria-hidden="true">
+    <div class="intro__stage">
+      <div class="intro__donut" id="introDonut">
+        <span class="intro__ripple"></span><span class="intro__ripple"></span>
+        <span class="intro__sparks" id="introSparks"></span>
+        <span class="intro__art" id="introArt"><img id="introImg" alt="" width="360" height="360" fetchpriority="high" decoding="async" draggable="false"><script>/* a different 3D donut on every visit (list = assets/3d/donuts/*-top.webp) */(function () {var L = 'almond-snowcap,bavarian-cream-dream,berry-coconut-snow,cappuccino-swirl,caramel-biscuit-crunch,caramel-drizzle,cheese-cloud,choco-almond,choco-crumble-stripe,choco-glaze,choco-sprinkle,coffee-crumble,cookie-speckle,cookies-and-cream-latte,hazelnut-crunch,hazelnut-velvet,mallow-party,mango-graham,matcha-almond,matcha-drizzle,matcha-web,midnight-marble,milk-tea-sesame,mocha-glaze,orange-zest-cream,original-glaze,smores-campfire,snow-web,strawberry-glaze,strawberry-sprinkle,tiramisu-dust,ube-cheese-cloud,ube-halaya,wafer-crunch-bar'.split(','), k = L[Math.random() * L.length | 0];try { var last = localStorage.getItem('gb-intro-donut'); while (L.length > 1 && k === last) k = L[Math.random() * L.length | 0]; localStorage.setItem('gb-intro-donut', k); } catch (e) { /* storage off */ }document.getElementById('introImg').src = 'assets/3d/donuts/' + k + '-top.webp?a=1';})();</script></span>
+      </div>
+    </div>
+    <p class="intro__word" aria-label="Glaze Bomb"><span class="intro__letters" id="introLetters">Glaze Bomb</span><span class="intro__glint" aria-hidden="true">Glaze Bomb</span></p>
+    <p class="intro__sub" id="introSub">Filled donuts &middot; glazed by hand</p>
+    <span class="intro__pills" id="introPills"></span>
+  </div>
+  <span class="intro__progress" aria-hidden="true"><i id="introBar"></i></span>
+  <button class="intro__skip" id="introSkip" type="button">Skip intro</button>
+  <span class="intro__hint" aria-hidden="true" id="introHint">tap the donut</span>
+</div>
+
+<header class="nav" id="nav">
+  <a href="index.html" class="nav__logo" aria-label="Glaze Bomb home">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="38" rx="28" ry="20" fill="#cf914c"/><ellipse cx="32" cy="40" rx="27" ry="4" fill="#f7e2bd" opacity=".8"/><path d="M6 33c0-12 12-20 26-20s26 8 26 20c-4 3-6-1-9 2s-2 7-6 7-4-5-8-5-4 6-8 5-3-6-7-5-4 2-6-1-6 0-8-3z" fill="#ff6a13"/><ellipse cx="22" cy="22" rx="7" ry="3" fill="#fff" opacity=".45" transform="rotate(-18 22 22)"/></svg>
+    <span>Glaze Bomb</span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="#top" class="is-page" aria-current="page">Gallery</a>
+    <a href="location.html">Location</a>
+  </nav>
+  <div class="nav__right">
+    <a href="menu.html#boxes" class="btn btn--primary btn--sm nav__order">Order a box</a>
+    <button class="nav__cart" id="cartBtn" aria-label="Open your order (0 items)">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 11h22l-2 15H7z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.5 11a4.5 4.5 0 0 1 9 0" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+      <span class="nav__count" id="cartCount">0</span>
+    </button>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ GALLERY HERO ============ -->
+<section class="phero" aria-labelledby="gTitle">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__beams"></div>
+    <div class="hero__orb hero__orb--a"></div>
+    <div class="floor"><div class="floor__grid"></div></div>
+    <div class="hero__horizon"></div>
+  </div>
+  <div class="phero__in">
+    <p class="kicker">The gallery</p>
+    <h1 class="phero__title" id="gTitle"><span class="line"><span>Fresh from</span></span> <span class="line"><span class="accent">the counter.</span></span></h1>
+    <p class="phero__lead">Our donuts, drinks and boxes, the shop on Glaze Lane and the early-morning kitchen. Shop and kitchen photos are placeholders until the real shoot.</p>
+    <div class="gfilter" id="gFilter" role="group" aria-label="Show photos of"></div>
+  </div>
+</section>
+
+<!-- ============ GRID ============ -->
+<section class="gallery" aria-label="Photos">
+  <div class="ggrid" id="gGrid"></div>
+  <div class="gnote">
+    <p><b>Got a Glaze Bomb photo?</b> Tag <b>#GlazeBomb</b> and your box could end up here.</p>
+    <div class="socials socials--lg" data-socials data-labels></div>
+  </div>
+</section>
+
+<!-- ============ VIEWER ============ -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox__scrim" data-close></div>
+  <figure class="lightbox__fig" role="dialog" aria-modal="true" aria-labelledby="lbCap">
+    <div class="lightbox__media" id="lbMedia"></div>
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__x" data-close aria-label="Close the photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="lightbox__nav lightbox__prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lightbox__nav lightbox__next" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <p class="foot__logo">Glaze Bomb</p>
+      <p>Filled brioche donuts, glazed by hand and made fresh every morning.</p>
+      <div class="socials socials--foot" data-socials></div>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="#top">Gallery</a><a href="location.html">Location</a><a href="index.html#box">Box of 6</a><a href="index.html#build">Build your own</a>
+    </nav>
+    <form class="news" id="newsForm" novalidate>
+      <label for="newsEmail">Get new flavors by email</label>
+      <div class="news__row">
+        <input id="newsEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
+      </div>
+      <p class="news__msg" id="newsMsg" role="status"></p>
+    </form>
+  </div>
+  <p class="foot__small">&copy; 2026 Glaze Bomb Donuts &middot; Concept website: orders and sign-ups are not processed.</p>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <div class="drawer__head"><h3>Your order</h3><button class="drawer__x" id="drawerClose" aria-label="Close your order">&times;</button></div>
+  <ul class="drawer__list" id="drawerList"></ul>
+  <div class="drawer__foot">
+    <div class="ticket">
+      <div class="seg" id="ticketWay" role="radiogroup" aria-label="How you get your order"><button type="button" role="radio" aria-checked="true" data-way="pickup">Pick-up</button><button type="button" role="radio" aria-checked="false" data-way="delivery">Delivery</button></div>
+      <label class="ticket__when"><span id="whenLabel">Ready for pick-up</span><select id="readyBy"></select></label>
+    </div>
+    <p><span>Total</span><b id="drawerTotal">$0.00</b></p>
+    <button class="btn btn--primary btn--block" id="checkout">Checkout</button>
+    <p class="drawer__note" id="checkoutNote">This is a concept website, so checkout is not active.</p>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="js/intro.js?v=46"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="js/gallery.js?v=46"></script>
+</body>
+</html>
