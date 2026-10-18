@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
-<link rel="stylesheet" href="brand.css?v=24">
+<link rel="stylesheet" href="brand.css?v=25">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -633,8 +633,8 @@
 <footer class="foot"><span data-lockup></span><span><span data-b="name">Glaze Bomb</span> brand kit v2.0 · local only, not published</span><span data-b="tagline">Filled to the edge.</span></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <dialog class="zoom" id="zoom" aria-label="Enlarged mockup"><div class="zoom__bar"><p class="zoom__cap"></p><button type="button" class="btn btn--sm btn--ghost zoom__x">Close</button></div><div class="zoom__body"></div></dialog>
-<script src="brand.js?v=24"></script>
-<script src="locations.js?v=24"></script>
+<script src="brand.js?v=25"></script>
+<script src="locations.js?v=25"></script>
 <script type="module">
 // three.js (about 600 KB) loads only when the 3D viewer comes near the screen
 const box = document.getElementById('loc3d');
@@ -648,10 +648,19 @@ async function start3d() {
     box?.classList.add('is-failed');
   }
 }
-if (box && 'IntersectionObserver' in window) {
-  const io = new IntersectionObserver((es) => { if (es.some((en) => en.isIntersecting)) { io.disconnect(); start3d(); } }, { rootMargin: '700px 0px' });
-  io.observe(box);
-} else start3d();
+// an observer starts it near the screen; scroll and a slow timer back it up in browsers that pause observers
+let started = false, io = null, timer = 0;
+function go() {
+  if (started) return;
+  started = true; io?.disconnect(); clearInterval(timer); removeEventListener('scroll', near);
+  start3d();
+}
+function near() { const r = box.getBoundingClientRect(); if (r.top < innerHeight + 700 && r.bottom > -700) go(); }
+if (box) {
+  if ('IntersectionObserver' in window) { io = new IntersectionObserver((es) => { if (es.some((en) => en.isIntersecting)) go(); }, { rootMargin: '700px 0px' }); io.observe(box); }
+  addEventListener('scroll', near, { passive: true });
+  timer = setInterval(near, 2000);
+}
 </script>
 </body>
 </html>
