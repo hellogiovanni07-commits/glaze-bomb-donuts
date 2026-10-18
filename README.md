@@ -7,6 +7,7 @@ Product-focused concept site for a filled-donut shop (no holes). Static HTML/CSS
 - `gallery.html`: product shots (3D renders) + drawn placeholders for the shop and kitchen photos, filters and a photo viewer. Swap a placeholder for a real photo by giving its item in `js/gallery.js` an image instead of an `icon`.
 - `location.html`: address, live open status, the week's hours (today marked), an illustrated map, getting here, pick-up steps, contact (placeholders) and FAQ.
 - Header on every page: Home / Menu / Gallery / Location.
+- `brand/index.html`: the brand kit (not linked from the site). 17 chapters: details, essentials, voice, logo, colour, type, icons, imagery, graphic elements, packaging, store, print, digital, UI kit, merch, motion, toolkit + checklist. Type the real details in chapter 01 (unknown ones are placeholders); every mockup updates and the browser remembers them. Logo SVGs and design tokens download from chapter 17. Opens from the folder too (classic script, no server needed).
 - Animated intro, header that hides on scroll down and comes back on scroll up, "Glazy" chat assistant (typo tolerant, knows the whole site, can add to the order).
 - Orders, checkout and newsletter are demo only (nothing is sent).
 
