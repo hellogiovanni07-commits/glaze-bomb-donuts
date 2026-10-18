@@ -667,3 +667,4 @@ button.flavor { padding: 0; background: none; cursor: pointer; }
   .post--light p { display: none; }
   .post--a img, .post--light img { width: 58%; left: 21%; top: 12%; }
 }
+@media (max-width: 1080px) { .toc { scrollbar-width: none; } .toc::-webkit-scrollbar { display: none; } }
